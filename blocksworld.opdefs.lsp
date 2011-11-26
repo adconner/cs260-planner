@@ -1,0 +1,18 @@
+(setf *ops* '(
+              ((pickup ?x)
+               ((ontable ?x) (clear ?x) (handempty))
+               ((ontable ?x) (clear ?x) (handempty))
+               ((holding ?x)))
+              ((putdown ?x)
+               ((holding ?x))
+               ((holding ?x))
+               ((ontable ?x) (handempty) (clear ?x)))
+              ((stack ?x ?y)
+               ((holding ?x) (clear ?y))
+               ((holding ?x) (clear ?y))
+               ((on ?x ?y) (clear ?x) (handempty)))
+              ((unstack ?x ?y)
+               ((on ?x ?y) (handempty) (clear ?x))
+               ((on ?x ?y) (handempty) (clear ?x))
+               ((holding ?x) (clear ?y))))
+

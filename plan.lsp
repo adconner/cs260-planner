@@ -14,26 +14,17 @@
                  (if cur (return (cons (cadr i) (if (eq cur 't) nil cur))))))))))
 
 
-; match function which returns assignments of variables to values which result in the description being a subset of the state, nil if no such assignment can be made (will only substitute into the description field, no variables should appear in state, to avoid naming conflicts)
+; match function which returns a list of all lists of assignments of variables to values in dotted pair format which result in the description being a subset of the state, nil if no such assignment can be made (will only substitute into the description field, no variables should appear in state, to avoid naming conflicts). For clarity, if there are no variables to assign and the inclusion holds, (nil) is returned, corresponding to the single empty assignment which satisfies the inclusion. This is consistent with the definition
 (defun match (description state) 
-  (if (subsetp description state)
+  (if (subsetp description state :test #'equal)
      '(nil) nil))
 
-; returns all pairs (operator result) of results of applying a generic operator to a state
+; predicate which tells if a symbol represents a variablle
+(defun varp (symb) (equal "?" (subseq (symbol-name symb) 0 1)))
+
+; returns all pairs (specific operator, result) of results of applying a generic operator to a state
 (defun applyop (state op)
   (mapcar #'(lambda (x) (union 
-                          (set-difference state (resolve (third op) x)) 
-                          (resolve (second op) x))) 
+                          (set-difference state (sublis (third op) x) :test #'equal ) 
+                          (sublis (second op) x) :test #'equal )) 
           (match (second op) state)))
-
-; substitutes the var value pairs into the description
-(defun resolve (description varvalues) 
-  (if (not varvalues) description
-    (substsingle (resolve (rest varvalues)) (first varvalues))))
-
-; helper function for previous which substitutes a single var value
-(defun substsingle (description varvalue)
-  (if (not (listp description)) 
-    (if (eq description (first varvalue))
-      (second varvalue))
-    (mapcar #'(lambda (x) (substsingle x varvalue)) description)))
