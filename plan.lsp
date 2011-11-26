@@ -26,14 +26,3 @@
                           (resolve (second op) x))) 
           (match (second op) state)))
 
-; substitutes the var value pairs into the description
-(defun resolve (description varvalues) 
-  (if (not varvalues) description
-    (substsingle (resolve (rest varvalues)) (first varvalues))))
-
-; helper function for previous which substitutes a single var value
-(defun substsingle (description varvalue)
-  (if (not (listp description)) 
-    (if (eq description (first varvalue))
-      (second varvalue))
-    (mapcar #'(lambda (x) (substsingle x varvalue)) description)))
