@@ -14,5 +14,4 @@
               ((unstack ?x ?y)
                ((on ?x ?y) (handempty) (clear ?x))
                ((on ?x ?y) (handempty) (clear ?x))
-               ((holding ?x) (clear ?y))))
-
+               ((holding ?x) (clear ?y)))))
