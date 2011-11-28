@@ -46,6 +46,17 @@
   (cond ((not (listp description)) (if (varp description) (list description) nil))
         (t (reduce #'union (mapcar #'find-vars description))))) 
 
+; helper function for match which produces the all possible variable assignments
+; on which to brute force
+(defun find-domains (description state)
+  (reduce #'(lambda (partial-pool newvar) 
+              (reduce #'append 
+                      (mapcar #'(lambda (pool-item) 
+                (mapcar #'(lambda (domval) (cons (cons newvar domval) pool-item))
+                        (find-domain newvar description state))) 
+                              partial-pool)))
+          (cons '(nil) (find-vars description))))
+
 ; predicate which tells if a symbol represents a variablle
 (defun varp (symb) (equal "?" (subseq (symbol-name symb) 0 1)))
 
