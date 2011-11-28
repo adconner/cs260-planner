@@ -25,7 +25,7 @@
 
 ; helper function for match which finds the possible values a variable may take given the state, used to determine the domains on which to brute force.
 (defun find-domain (var description state) 
-  (reduce #'intersection 
+  (reduce #'union 
     (mapcar #'(lambda (item) 
       ; build up partial domain list using reduce
       (reduce #'(lambda (x y) (if (and y (not (eq y t))) (cons y x) x))
@@ -40,6 +40,11 @@
                                           ((eq x y) t)
                                           (t nil))) item stateitem))) 
                           state)))) description)))
+
+; helper function for match which gives all variables in the description
+(defun find-vars (description) 
+  (cond ((not (listp description)) (if (varp description) (list description) nil))
+        (t (reduce #'union (mapcar #'find-vars description))))) 
 
 ; predicate which tells if a symbol represents a variablle
 (defun varp (symb) (equal "?" (subseq (symbol-name symb) 0 1)))
