@@ -23,8 +23,23 @@
   ;(if (subsetp description state :test #'equal)
      ;'(nil) nil))
 
-; helper function for match which takes only one item of a description
-(defun match-sing (item state)
+; helper function for match which finds the possible values a variable may take given the state, used to determine the domains on which to brute force.
+(defun find-domain (var description state) 
+  (reduce #'intersection 
+    (mapcar #'(lambda (item) 
+      ; build up partial domain list using reduce
+      (reduce #'(lambda (x y) (if (and y (not (eq y t))) (cons y x) x))
+        (cons nil (mapcar #'(lambda (stateitem) 
+          ; reduce to nil if no match possible, t if trivial match, x=var if match involving var is found
+          (reduce #'(lambda (x y) (and x y (cond ((eq x t) y)
+                                                 ((eq y t) x)
+                                                 ((eq x y) x)
+                                                 (t nil))))
+            ; find the possible match for this pairing
+            (mapcar #'(lambda (x y) (cond ((varp x) (if (eq var x) y t))
+                                          ((eq x y) t)
+                                          (t nil))) item stateitem))) 
+                          state)))) description)))
 
 ; predicate which tells if a symbol represents a variablle
 (defun varp (symb) (equal "?" (subseq (symbol-name symb) 0 1)))
@@ -35,3 +50,4 @@
                           (set-difference state (sublis x (third op)) :test #'equal ) 
                           (sublis x (fourth op)) :test #'equal )))
           (match (second op) state)))
+; todo account for additional variables introduced in the effects and name of an operator
