@@ -1,5 +1,13 @@
 (defun h (state) 0)
 
+; finds shortest plan to complete the task
+; requires h to be an underestimate
+(defun plan (costbound) 
+  (do ((costb (h *initpsd*) (+ costb 1)))
+    ((> costb costbound) nil)
+    (let ((out (dfs *initpsd* costb)))
+      (if out (return out)))))
+
 ; heuristic dfs of state space (which consists of the world description only)
 (defun dfs (state costbound) 
   (cond ((match *gspec* state) t)
