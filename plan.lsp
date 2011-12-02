@@ -17,13 +17,9 @@
 ; match function which returns a list of all lists of assignments of variables to values in dotted pair format which result in the description being a subset of the state, nil if no such assignment can be made (will only substitute into the description field, no variables should appear in state, to avoid naming conflicts). For clarity, if there are no variables to assign and the inclusion holds, (nil) is returned, corresponding to the single empty assignment which satisfies the inclusion. This is consistent with the definition
 ; this is a contraint satisfaction problem to which a brute force solution is given
 (defun match (description state) 
-  (cond ((subsetp description state :test #'equal) '(nil))
-        (t nil)))
-  ;(reduce #'(lambda (x y) (intersection x y :test #'(lambda (x y) (and (subsetp x y) (subsetp y x)))))
-          ; use set equivalence for the comparison
-          ;;(mapcar #'(lambda (x) (match-sing x state)) description)))
-  ;(if (subsetp description state :test #'equal)
-     ;'(nil) nil))
+  (remove-if-not #'(lambda (assigns) 
+                     (subsetp (sublis assigns description) state :test #'equal))
+                 (find-domains description state)))
 
 ; helper function for match which finds the possible values a variable may take given the state, used to determine the domains on which to brute force.
 (defun find-domain (var description state) 
