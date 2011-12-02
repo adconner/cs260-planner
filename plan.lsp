@@ -1,7 +1,5 @@
 (defun h (state) (return 0))
 
-(defun plan (depth) ; expand operations and goal states into *ops-full*,
-
 ; heuristic dfs of state space (which consists of the world description only)
 (defun dfs (state costbound) 
   (cond ((match *gspec* state) t)
@@ -9,7 +7,7 @@
                               #'(lambda (x) (cons (+ (+ 1 costbound) (h (cadr x))) x)) 
                           (reduce #'append (mapcar 
                                              #'(lambda (x) (applyop state x)) 
-                                             *ops-full*)))
+                                             *ops*)))
                   #'(lambda (lhs rhs) (< (car lhs) (car rhs)))))
              (if (<= (car i) costbound) 
                (let ((cur (dfs (caddr i) (- costbound 1))))
