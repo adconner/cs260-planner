@@ -36,15 +36,15 @@
 		((net-open) (has-ball forward) (not-guarded forward))
 		((scored) (guarded forward)))
 
-		((dangle-goalie forward)
-		((has-ball forward) (not-guarded forward))
+		((dangle-goalie opforward)
+		((has-ball opforward) (not-guarded opforward))
 		(())
-		((net-open)))
+		((opnet-open)))
 
-		((score-goal forward)
-		((net-open) (has-ball forward) (not-guarded forward))
-		((net-open) (has-ball forward) (not-guarded forward))
-		((scored) (guarded forward)))
+		((score-goal opforward)
+		((opnet-open) (has-ball opforward) (not-guarded opforward))
+		((opnet-open) (has-ball opforward) (not-guarded opforward))
+		((opscored) (guarded opforward)))
 
 		((guard ?x)
 		((not-guarded ?x))
