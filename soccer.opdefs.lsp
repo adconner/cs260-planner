@@ -60,7 +60,7 @@
 		((opscored) (guarded opforward)))
 
 		((guard ?x)
-		((not-guarded ?x))
+		(())
 		((not-guarded ?x))
 		((guarded ?x)))
 
