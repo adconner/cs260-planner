@@ -47,7 +47,7 @@
 		((score-goal forward)
 		((net-open) (has-ball forward) (not-guarded forward))
 		((net-open) (has-ball forward) (not-guarded forward))
-		((scored) (guarded forward)))
+		((scored) (guarded forward) (has-ball opgoalie)))
 
 		((dangle-goalie opforward)
 		((has-ball opforward) (not-guarded opforward))
@@ -57,7 +57,7 @@
 		((score-goal opforward)
 		((opnet-open) (has-ball opforward) (not-guarded opforward))
 		((opnet-open) (has-ball opforward) (not-guarded opforward))
-		((opscored) (guarded opforward)))
+		((opscored) (guarded opforward) (has-ball goalie)))
 
 		((guard ?x)
 		(())
