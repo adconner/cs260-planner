@@ -5,6 +5,10 @@
 		(defenseman midfield)
 		(midfield forward)))
 
+(setf *opfield* '((opgoalie opdefenseman)
+		(opdefenseman opmidfield)
+		(opmidfield opforward)))
+
 ;; this just defines who is guarding who so that the tackle function knows
 ;; who to give the ball to
 
@@ -12,11 +16,20 @@
 		   (opmidfield midfield) 
 		   (opforward defenseman)))
 
+(setf *opmatchups* '((forward opdefenseman)
+		     (midfield opmidfield)
+		     (defenseman opforward)))
+
 (setf *ops* '(
 		((pass ?x)
 		((not-guarded ?x) (has-ball ?x))
 		((not-guarded ?x) (has-ball ?x))
 		((has-ball (assoc ?x *field*)) (guarded ?x)))
+
+		((oppass ?x)
+		((not-guarded ?x) (has-ball ?x))
+		((not-guarded ?x) (has-ball ?x))
+		((has-ball (assoc ?x *opfield*)) (guarded ?x)))
 
 		((get-open ?x)
 		((has-ball ?x))
@@ -58,4 +71,12 @@
 		;; gives the ball to the person on our team who guards the 
 		;; opposing player
 		((has-ball (assoc ?x *matchups*))))
+
+		;; ?x is the opposing player we are trying to tackle
+		((optackle ?x)
+		((has-ball ?x) (guarded ?x))
+		((has-ball ?x))
+		;; gives the ball to the person on our team who guards the 
+		;; opposing player
+		((has-ball (assoc ?x *opmatchups*))))
              ))
