@@ -20,7 +20,7 @@
 
 		((get-open ?x)
 		((has-ball ?x))
-		(())
+		((guarded ?x))
 		((not-guarded ?x)))
 
 		;; in our world, only a forward can score, so force the variable
