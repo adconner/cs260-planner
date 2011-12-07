@@ -11,13 +11,12 @@
 		  (matchup opmidfield midfield)
 		  (matchup opforward defenseman)
 		  (guarded defenseman)
-		  (not-guarded midfield)
+		  (guarded midfield)
 		  (not-guarded forward)
 		  (guarded opdefenseman)
 		  (guarded opmidfield)
 		  (guarded opforward)
 
+		  (has-ball opmidfield)))
 
-		  (has-ball midfield))) 
-
-(setf *gspec* '((not-guarded ?x) (not-guarded ?y)))
+(setf *gspec* '((has-ball opmidfield) (not-guarded forward)))
