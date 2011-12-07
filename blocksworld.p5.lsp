@@ -3,4 +3,4 @@
 ; Pickup a
 ; Stack a c
 (setf *initpsd* '((clear a) (clear c) (on b a) (ontable c) (ontable b) (handempty)))
-(setf *gspec* '((on c ?x)(ontable ?y))
+(setf *gspec* '((on c ?x)(ontable ?y)))
