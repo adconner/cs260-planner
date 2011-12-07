@@ -14,7 +14,6 @@
 			(progn
 				(format t "Testing Blocksworld.~%")
 				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\blocksworld.opdefs.lsp")
-				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\heuristic1.lsp")
 				(cond
 					((eql test 0) (progn (format t "Starting test: p0~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\blocksworld.p0.lsp")))
 					((eql test 1) (progn (format t "Starting test: p1~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\blocksworld.p1.lsp")))
@@ -33,7 +32,6 @@
 			(progn
 				(format t "Testing Soccer World.~%")
 				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\soccer.opdefs.lsp")
-				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\heuristic1.lsp")
 				(cond
 					((eql test 0) (progn (format t "Starting test: p0~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\soccer.p0.lsp")))
 					((eql test 1) (progn (format t "Starting test: p1~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\soccer.p1.lsp")))
@@ -52,7 +50,6 @@
 			(progn
 				(format t "Testing ClothesWorld.~%")
 				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\clothesworld.opdefs.lsp")
-				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\heuristic1.lsp")
 				(cond
 					((eql test 0) (progn (format t "Starting test: p0~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\clothesworld.p1.lsp")))
 					((eql test 1) (progn (format t "Starting test: p1~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\clothesworld.p2.lsp")))

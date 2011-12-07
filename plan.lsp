@@ -1,4 +1,4 @@
-(defun h (state) (* factor (length (set-difference 
+(defun h (state) (* *factor* (length (set-difference 
          (remove-if-not #'(lambda (prop) (every #'(lambda (x) (not (varp x))) prop)) *gspec*) 
          state :test #'equal))))
 
