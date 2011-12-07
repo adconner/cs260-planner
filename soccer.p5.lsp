@@ -17,6 +17,6 @@
 		  (guarded opmidfield)
 		  (guarded opforward)
 		 
-		  (has-ball defenseman))) 
+		  (has-ball defenseman)))
 
-(setf *gspec* '((has-ball ?x) (matchup ?x ?y) (next-to ?x defenseman))
+(setf *gspec* '((has-ball ?x) (matchup ?x ?y) (next-to ?x defenseman)))
