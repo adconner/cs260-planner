@@ -1,3 +1,8 @@
+;
+; This is a simple program that can be used to test the algorithm with the various worlds/tests.
+;
+; It will only work if you change the path names for each file to your local directory
+
 
 (format t "You will need to change your file paths in code to run the Test Driver.~%")
 
@@ -33,6 +38,19 @@
 					((eql test 6) (progn (format t "Starting test: p6~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\soccer.p6.lsp")))
 					((eql test 7) (progn (format t "Starting test: p7~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\soccer.p7.lsp")))
 					((eql test 8) (progn (format t "Starting test: p8~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\soccer.p8.lsp")))
+					(T (progn (format t "Incorrect Testing parameter. Aborting...") (return 0)))
+				)
+			)
+		)
+		((eql world 2) ;clothesworld 
+			(progn
+				(format t "Testing ClothesWorld.~%")
+				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\clothesworld.opdefs.lsp")
+				(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\heuristic1.lsp")
+				(cond
+					((eql test 0) (progn (format t "Starting test: p0~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\blocksworld.p0.lsp")))
+					((eql test 1) (progn (format t "Starting test: p1~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\blocksworld.p1.lsp")))
+					((eql test 2) (progn (format t "Starting test: p2~%")(load "C:\\Users\\ZachAzar\\Documents\\VandyWork\\Fall\\AI\\Proj3\\GitProj\\blocksworld.p2.lsp")))
 					(T (progn (format t "Incorrect Testing parameter. Aborting...") (return 0)))
 				)
 			)

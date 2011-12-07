@@ -1,3 +1,3 @@
-(setf *initpsd* '((ontable a) (holding c) (on b d) (ontable b)))
-
-(setf *gspec* '((on ?x d) (ontable ?x) (on ?x ?y) (holding ?z)))
+; Trivial step with undefined variables.
+(setf *initpsd* '((ontable a)(on a b)(on b c)(handempty)(clear c)))
+(setf *gspec* '((ontable ?x) (on ?x ?y)))
