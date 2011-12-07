@@ -1,4 +1,6 @@
-(defun h (state) (* *factor* (length (set-difference *gspec* state :test #'equal))))
+(defun h (state) (* factor (length (set-difference 
+         (remove-if-not #'(lambda (prop) (every #'(lambda (x) (not (varp x))) prop)) *gspec*) 
+         state :test #'equal))))
 
 ; finds shortest plan to complete the task
 ; requires h to be an underestimate
