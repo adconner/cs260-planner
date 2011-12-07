@@ -1,3 +1,2 @@
-(setf *initpsd* '((on y z) (on x y) (on w x) (ontable z)))
-
-(setf *gspec* '((on w x) (on x y) (on y z) (ontable w)))
+(setf *initpsd* '((on y z) (on x y) (on w x) (clear w) (handempty) (ontable z)))
+(setf *gspec* '((on x w) (on y x) (on z y) (ontable w)))

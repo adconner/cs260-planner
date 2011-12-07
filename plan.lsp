@@ -13,6 +13,8 @@
 
 ; heuristic dfs of state space (which consists of the world description only)
 (defun dfs (state costbound) 
+  (print state)
+  (print costbound)
   (cond ((match *gspec* state) t)
         (t (dolist (i (sort (mapcar 
                               #'(lambda (opstate) (cons (+ 1 (h (cadr opstate))) opstate)) 
