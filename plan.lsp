@@ -1,8 +1,11 @@
-(defun h (state) 0)
+(defun h (state) (* factor (length (set-difference 
+         (remove-if-not #'(lambda (prop) (every #'(lambda (x) (not (varp x))) prop)) *gspec*) 
+         state :test #'equal))))
 
 ; finds shortest plan to complete the task
 ; requires h to be an underestimate
 (defun plan (costbound) 
+  (setf *factor* (/ 1.0 (apply #'max (mapcar #'(lambda (x) (length (second x))) *ops*))))
   (do ((costb (h *initpsd*) (+ costb 1)))
     ((> costb costbound) nil)
     (let ((out (dfs *initpsd* costb)))
