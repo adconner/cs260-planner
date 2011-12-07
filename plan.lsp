@@ -34,7 +34,7 @@
 ; helper function for match which finds the possible values a variable may take given the state, used to determine the domains on which to brute force.
 (defun find-domain (var description state) 
   (reduce #'union 
-    (mapcar #'(lambda (item) 
+    (cons nil (mapcar #'(lambda (item) 
       ; build up partial domain list using reduce
       (reduce #'(lambda (x y) (if (and y (not (eq y t))) (cons y x) x))
         (cons nil (mapcar #'(lambda (stateitem) 
@@ -47,12 +47,12 @@
             (mapcar #'(lambda (x y) (cond ((varp x) (if (eq var x) y t))
                                           ((eq x y) t)
                                           (t nil))) item stateitem))) 
-                          state)))) description)))
+                          state)))) description))))
 
 ; helper function for match which gives all variables in the description
 (defun find-vars (description) 
   (cond ((not (listp description)) (if (varp description) (list description) nil))
-        (t (reduce #'union (mapcar #'find-vars description))))) 
+        (t (reduce #'union (cons nil (mapcar #'find-vars description))))))
 
 ; helper function for match which produces the all possible variable assignments
 ; on which to brute force
