@@ -111,4 +111,4 @@
   (mapcar #'(lambda (x) (list (sublis x (first op)) (union 
                           (set-difference state (sublis x (third op)) :test #'equal ) 
                           (sublis x (fourth op)) :test #'equal )))
-
+		(match (second op) state)))
